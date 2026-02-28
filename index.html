@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôtel-Restaurant Le Paradis</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation principale -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🏨 Le Paradis</div>
+            <div class="nav-links">
+                <button onclick="loadPage('accueil')">Accueil</button>
+                <button onclick="loadPage('cgu')">CGU</button>
+                <button onclick="loadPage('mentions')">Mentions légales</button>
+                <button onclick="loadPage('confidentialite')">Politique de confidentialité</button>
+                <button onclick="loadPage('contact')">Contact</button>
+                <button onclick="loadPage('equipe')">Équipe</button>
+                <button onclick="loadPage('personnel')">Accès personnel</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="main-content" id="main-content">
+        <!-- Le contenu des pages sera chargé ici -->
+    </div>
+
+    <!-- Instructions webhook Discord -->
+    <div style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-width: 300px; display: none;" id="webhookInstructions">
+        <h4 style="margin-bottom: 10px; color: #667eea;">📝 Configuration du webhook Discord</h4>
+        <ol style="margin-left: 20px; font-size: 0.9rem;">
+            <li>Allez dans les paramètres de votre serveur Discord</li>
+            <li>Cliquez sur "Intégrations" puis "Webhooks"</li>
+            <li>Créez un nouveau webhook</li>
+            <li>Copiez l'URL générée</li>
+            <li>Remplacez 'VOTRE_URL_WEBHOOK_ICI' par cette URL dans le fichier main.js</li>
+        </ol>
+        <button onclick="this.parentElement.style.display='none'" style="margin-top: 10px; padding: 5px 10px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">Fermer</button>
+    </div>
+
+    <!-- Bouton pour afficher les instructions webhook -->
+    <button onclick="document.getElementById('webhookInstructions').style.display='block'" style="position: fixed; bottom: 20px; left: 20px; padding: 10px 20px; background: #5865F2; color: white; border: none; border-radius: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000;">
+        🤖 Configurer Discord
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
