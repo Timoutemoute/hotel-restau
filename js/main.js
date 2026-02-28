@@ -9,7 +9,7 @@ const ROOMS = [
         id: 'classique',
         name: 'Chambre Classique',
         price: 95,
-        image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304',
+        image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
         description: 'Élégance et confort pour un séjour paisible',
         size: 18,
         bed: 'Lit double (140cm) ou deux lits simples',
@@ -19,7 +19,7 @@ const ROOMS = [
         id: 'superieure',
         name: 'Chambre Supérieure',
         price: 145,
-        image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a',
+        image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
         description: 'Espace généreux avec vue sur le jardin',
         size: 25,
         bed: 'Lit queen size (160cm)',
@@ -29,7 +29,7 @@ const ROOMS = [
         id: 'deluxe',
         name: 'Chambre Deluxe',
         price: 195,
-        image: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39',
+        image: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
         description: 'Prestations haut de gamme pour une expérience unique',
         size: 32,
         bed: 'Lit king size (180cm)',
@@ -39,7 +39,7 @@ const ROOMS = [
         id: 'suite',
         name: 'Suite Familiale',
         price: 280,
-        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b',
+        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
         description: 'Espace de vie séparé, idéal pour les familles',
         size: 45,
         bed: '1 lit king + 2 lits simples',
@@ -47,25 +47,10 @@ const ROOMS = [
     }
 ];
 
-const MENU = {
-    entrees: [
-        { name: 'Escargots de Bourgogne', description: 'Douzaine d\'escargots au beurre persillé maison', price: 14 },
-        { name: 'Foie gras de canard', description: 'Maison, chutney de figues et pain brioché', price: 16 },
-        { name: 'Soupe à l\'oignon gratinée', description: 'Recette traditionnelle, gratinée au gruyère', price: 12 },
-        { name: 'Saumon fumé', description: 'Fumé maison, blinis et crème citronnée', price: 15 }
-    ],
-    plats: [
-        { name: 'Filet de bœuf', description: 'Sauce au poivre, gratin dauphinois', price: 28 },
-        { name: 'Dos de cabillaud', description: 'Beurre blanc, légumes de saison', price: 26 },
-        { name: 'Coq au Riesling', description: 'Spécialité alsacienne, spätzle fraîches', price: 24 },
-        { name: 'Magret de canard', description: 'Miel et épices, pommes sautées', price: 27 }
-    ],
-    desserts: [
-        { name: 'Crème brûlée', description: 'À la vanille de Madagascar', price: 10 },
-        { name: 'Tarte Tatin', description: 'Façon grand-mère, glace vanille', price: 11 },
-        { name: 'Profiteroles', description: 'Choux, glace vanille, chocolat chaud', price: 12 },
-        { name: 'Soufflé au Grand Marnier', description: 'Préparation minute', price: 13 }
-    ]
+const MENU_PRICES = {
+    decouverte: 32,
+    gastronomique: 45,
+    enfant: 15
 };
 
 // Initialisation
@@ -97,23 +82,25 @@ async function loadPage(pageName) {
         mainContent.innerHTML = html;
         
         // Initialisation selon la page
-        switch(pageName) {
-            case 'chambres':
-                initRoomsPage();
-                break;
-            case 'restaurant':
-                initRestaurantPage();
-                break;
-            case 'reservation':
-                initReservationPage();
-                break;
-            case 'contact':
-                initContactPage();
-                break;
-            case 'personnel':
-                initPersonnelPage();
-                break;
-        }
+        setTimeout(() => {
+            switch(pageName) {
+                case 'chambres':
+                    initRoomsPage();
+                    break;
+                case 'restaurant':
+                    initRestaurantPage();
+                    break;
+                case 'reservation':
+                    initReservationPage();
+                    break;
+                case 'contact':
+                    initContactPage();
+                    break;
+                case 'personnel':
+                    initPersonnelPage();
+                    break;
+            }
+        }, 100); // Petit délai pour que le DOM soit prêt
         
         // Mise à jour du menu actif
         document.querySelectorAll('.nav-links a').forEach(link => {
@@ -174,43 +161,79 @@ function initRestaurantPage() {
             <div class="menu-section">
                 <h2>Entrées</h2>
                 <div class="menu-items">
-                    ${MENU.entrees.map(item => `
-                        <div class="menu-item">
-                            <div class="menu-item-content">
-                                <h4>${item.name}</h4>
-                                <p>${item.description}</p>
-                            </div>
-                            <div class="menu-item-price">${item.price}€</div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Escargots de Bourgogne</h4>
+                            <p>Douzaine d'escargots au beurre persillé maison</p>
                         </div>
-                    `).join('')}
+                        <div class="menu-item-price">14€</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Foie gras de canard</h4>
+                            <p>Maison, chutney de figues et pain brioché</p>
+                        </div>
+                        <div class="menu-item-price">16€</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Soupe à l'oignon gratinée</h4>
+                            <p>Recette traditionnelle, gratinée au gruyère</p>
+                        </div>
+                        <div class="menu-item-price">12€</div>
+                    </div>
                 </div>
             </div>
             <div class="menu-section">
                 <h2>Plats</h2>
                 <div class="menu-items">
-                    ${MENU.plats.map(item => `
-                        <div class="menu-item">
-                            <div class="menu-item-content">
-                                <h4>${item.name}</h4>
-                                <p>${item.description}</p>
-                            </div>
-                            <div class="menu-item-price">${item.price}€</div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Filet de bœuf</h4>
+                            <p>Sauce au poivre, gratin dauphinois</p>
                         </div>
-                    `).join('')}
+                        <div class="menu-item-price">28€</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Dos de cabillaud</h4>
+                            <p>Beurre blanc, légumes de saison</p>
+                        </div>
+                        <div class="menu-item-price">26€</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Coq au Riesling</h4>
+                            <p>Spécialité alsacienne, spätzle fraîches</p>
+                        </div>
+                        <div class="menu-item-price">24€</div>
+                    </div>
                 </div>
             </div>
             <div class="menu-section">
                 <h2>Desserts</h2>
                 <div class="menu-items">
-                    ${MENU.desserts.map(item => `
-                        <div class="menu-item">
-                            <div class="menu-item-content">
-                                <h4>${item.name}</h4>
-                                <p>${item.description}</p>
-                            </div>
-                            <div class="menu-item-price">${item.price}€</div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Crème brûlée</h4>
+                            <p>À la vanille de Madagascar</p>
                         </div>
-                    `).join('')}
+                        <div class="menu-item-price">10€</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Tarte Tatin</h4>
+                            <p>Façon grand-mère, glace vanille</p>
+                        </div>
+                        <div class="menu-item-price">11€</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Profiteroles</h4>
+                            <p>Choux, glace vanille, chocolat chaud</p>
+                        </div>
+                        <div class="menu-item-price">12€</div>
+                    </div>
                 </div>
             </div>
         `;
@@ -249,10 +272,10 @@ function initReservationPage() {
     const restaurantForm = document.getElementById('restaurant-form');
     
     if (typeSelect) {
-        typeSelect.addEventListener('change', () => {
-            const value = typeSelect.value;
-            hotelForm.style.display = value === 'hotel' ? 'block' : 'none';
-            restaurantForm.style.display = value === 'restaurant' ? 'block' : 'none';
+        typeSelect.addEventListener('change', function() {
+            const value = this.value;
+            if (hotelForm) hotelForm.style.display = value === 'hotel' ? 'block' : 'none';
+            if (restaurantForm) restaurantForm.style.display = value === 'restaurant' ? 'block' : 'none';
         });
     }
     
@@ -276,8 +299,17 @@ function initReservationPage() {
         depart.addEventListener('change', calculateNights);
     }
     
-    // Compteurs
+    // Chambre change
+    const chambre = document.getElementById('chambre');
+    if (chambre) {
+        chambre.addEventListener('change', updateHotelTotal);
+    }
+    
+    // Initialiser les compteurs
     initCounters();
+    
+    // Initialiser les radios menu
+    initMenuRadios();
 }
 
 function initCounters() {
@@ -287,7 +319,13 @@ function initCounters() {
         const input = counter.querySelector('input');
         
         if (minus && plus && input) {
-            minus.addEventListener('click', () => {
+            // Supprimer les anciens listeners pour éviter les doublons
+            const newMinus = minus.cloneNode(true);
+            const newPlus = plus.cloneNode(true);
+            minus.parentNode.replaceChild(newMinus, minus);
+            plus.parentNode.replaceChild(newPlus, plus);
+            
+            newMinus.addEventListener('click', function() {
                 let val = parseInt(input.value) || 0;
                 if (val > 0) {
                     input.value = val - 1;
@@ -295,7 +333,7 @@ function initCounters() {
                 }
             });
             
-            plus.addEventListener('click', () => {
+            newPlus.addEventListener('click', function() {
                 let val = parseInt(input.value) || 0;
                 input.value = val + 1;
                 updateTotal();
@@ -304,77 +342,151 @@ function initCounters() {
     });
 }
 
+function initMenuRadios() {
+    const radios = document.querySelectorAll('input[name="menu"]');
+    radios.forEach(radio => {
+        radio.addEventListener('change', updateRestaurantTotal);
+    });
+}
+
+function updateTotal() {
+    const type = document.getElementById('reservation-type')?.value;
+    if (type === 'hotel') {
+        updateHotelTotal();
+    } else if (type === 'restaurant') {
+        updateRestaurantTotal();
+    }
+}
+
 function updateHotelTotal() {
     const chambre = document.getElementById('chambre');
     const nuits = document.getElementById('nuits');
     const total = document.getElementById('hotel-total');
     
     if (chambre && nuits && total) {
-        const chambrePrice = ROOMS.find(r => r.id === chambre.value)?.price || 95;
+        const selectedRoom = ROOMS.find(r => r.id === chambre.value) || ROOMS[0];
         const nights = parseInt(nuits.value) || 1;
-        total.textContent = `${chambrePrice * nights}€`;
+        total.textContent = `${selectedRoom.price * nights}€`;
     }
 }
 
 function updateRestaurantTotal() {
-    const adultes = document.getElementById('adultes')?.value || 0;
-    const enfants = document.getElementById('enfants')?.value || 0;
-    const menu = document.querySelector('input[name="menu"]:checked')?.value || 'decouverte';
+    const adultes = parseInt(document.getElementById('adultes')?.value) || 0;
+    const enfants = parseInt(document.getElementById('enfants')?.value) || 0;
+    const menuSelected = document.querySelector('input[name="menu"]:checked')?.value || 'decouverte';
     
-    const prices = { decouverte: 32, gastronomique: 45, enfant: 15 };
-    const price = prices[menu] || 32;
+    const price = MENU_PRICES[menuSelected] || 32;
+    const total = (adultes * price) + (enfants * price * 0.5);
     
-    const total = (parseInt(adultes) * price) + (parseInt(enfants) * price * 0.5);
-    document.getElementById('restaurant-total').textContent = `${total}€`;
+    const totalElement = document.getElementById('restaurant-total');
+    if (totalElement) {
+        totalElement.textContent = `${total}€`;
+    }
 }
 
 // Envoi de réservation
 async function submitReservation() {
-    const type = document.getElementById('reservation-type').value;
+    const typeSelect = document.getElementById('reservation-type');
+    if (!typeSelect || !typeSelect.value) {
+        showMessage('Veuillez sélectionner un type de réservation', 'error');
+        return;
+    }
+    
+    const type = typeSelect.value;
+    
+    // Vérifier les champs obligatoires
+    const nom = document.getElementById('nom')?.value;
+    const email = document.getElementById('email')?.value;
+    const telephone = document.getElementById('telephone')?.value;
+    
+    if (!nom || !email || !telephone) {
+        showMessage('Veuillez remplir tous les champs obligatoires', 'error');
+        return;
+    }
     
     const formData = {
         type: type === 'hotel' ? 'Hôtel' : 'Restaurant',
-        nom: document.getElementById('nom').value,
-        email: document.getElementById('email').value,
-        telephone: document.getElementById('telephone').value,
+        nom: nom,
+        email: email,
+        telephone: telephone,
+        demande: document.getElementById('demande')?.value || '',
         date: new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })
     };
     
     if (type === 'hotel') {
-        formData.chambre = document.getElementById('chambre').options[document.getElementById('chambre').selectedIndex].text;
-        formData.arrivee = document.getElementById('arrivee').value;
-        formData.depart = document.getElementById('depart').value;
-        formData.nuits = document.getElementById('nuits').value;
-        formData.adultes = document.getElementById('adultes-hotel').value;
-        formData.enfants = document.getElementById('enfants-hotel').value;
-        formData.total = document.getElementById('hotel-total').textContent;
-    } else {
-        formData.date = document.getElementById('date-restaurant').value;
-        formData.heure = document.getElementById('heure').value;
-        formData.adultes = document.getElementById('adultes').value;
-        formData.enfants = document.getElementById('enfants').value;
-        formData.menu = document.querySelector('input[name="menu"]:checked')?.parentElement.querySelector('h4').textContent;
-        formData.total = document.getElementById('restaurant-total').textContent;
+        const chambre = document.getElementById('chambre')?.value;
+        const arrivee = document.getElementById('arrivee')?.value;
+        const depart = document.getElementById('depart')?.value;
+        const adultes = document.getElementById('adultes-hotel')?.value;
+        const enfants = document.getElementById('enfants-hotel')?.value;
+        
+        if (!chambre || !arrivee || !depart) {
+            showMessage('Veuillez remplir tous les champs de réservation hôtel', 'error');
+            return;
+        }
+        
+        const selectedRoom = ROOMS.find(r => r.id === chambre) || ROOMS[0];
+        
+        formData.chambre = selectedRoom.name;
+        formData.arrivee = arrivee;
+        formData.depart = depart;
+        formData.nuits = document.getElementById('nuits')?.value || '1';
+        formData.adultes = adultes || '2';
+        formData.enfants = enfants || '0';
+        formData.total = document.getElementById('hotel-total')?.textContent || '0€';
+        
+    } else if (type === 'restaurant') {
+        const dateRestaurant = document.getElementById('date-restaurant')?.value;
+        const heure = document.getElementById('heure')?.value;
+        const adultes = document.getElementById('adultes')?.value;
+        const enfants = document.getElementById('enfants')?.value;
+        const menuSelected = document.querySelector('input[name="menu"]:checked');
+        
+        if (!dateRestaurant || !heure || !adultes || !menuSelected) {
+            showMessage('Veuillez remplir tous les champs de réservation restaurant', 'error');
+            return;
+        }
+        
+        const menuText = menuSelected.closest('.radio-label')?.querySelector('.radio-text strong')?.textContent || 'Menu Découverte';
+        
+        formData.date = dateRestaurant;
+        formData.heure = heure;
+        formData.adultes = adultes;
+        formData.enfants = enfants || '0';
+        formData.menu = menuText;
+        formData.total = document.getElementById('restaurant-total')?.textContent || '0€';
     }
-    
-    formData.message = document.getElementById('demande')?.value || '';
     
     try {
         await sendToDiscord(formData, 'reservation');
         
-        const message = document.getElementById('reservation-message');
-        message.className = 'alert alert-success';
-        message.textContent = 'Votre réservation a bien été enregistrée. Nous vous enverrons une confirmation par email.';
-        message.style.display = 'block';
+        showMessage('Votre réservation a bien été enregistrée. Nous vous enverrons une confirmation par email.', 'success');
         
-        document.getElementById('reservation-form').reset();
+        // Réinitialiser le formulaire
+        document.getElementById('reservation-form')?.reset();
+        if (type === 'hotel') {
+            document.getElementById('hotel-form').style.display = 'none';
+        } else {
+            document.getElementById('restaurant-form').style.display = 'none';
+        }
+        document.getElementById('reservation-type').value = '';
         
     } catch (error) {
         console.error('Erreur:', error);
-        const message = document.getElementById('reservation-message');
-        message.className = 'alert alert-error';
-        message.textContent = 'Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.';
+        showMessage('Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.', 'error');
+    }
+}
+
+function showMessage(text, type) {
+    const message = document.getElementById('reservation-message');
+    if (message) {
+        message.textContent = text;
+        message.className = `alert alert-${type}`;
         message.style.display = 'block';
+        
+        setTimeout(() => {
+            message.style.display = 'none';
+        }, 5000);
     }
 }
 
@@ -385,32 +497,42 @@ async function sendToDiscord(data, type) {
         return;
     }
     
+    const title = type === 'reservation' ? '📅 Nouvelle réservation' : '📧 Nouveau message';
+    const color = type === 'reservation' ? 0x2ECC71 : 0x3498DB;
+    
+    const fields = Object.entries(data).map(([key, value]) => ({
+        name: key.charAt(0).toUpperCase() + key.slice(1),
+        value: value.toString(),
+        inline: true
+    }));
+    
     const embed = {
-        title: type === 'reservation' ? '📅 Nouvelle réservation' : '📧 Nouveau message',
-        color: type === 'reservation' ? 0x2ECC71 : 0x3498DB,
-        fields: Object.entries(data).map(([key, value]) => ({
-            name: key.charAt(0).toUpperCase() + key.slice(1),
-            value: value.toString(),
-            inline: true
-        })),
+        title: title,
+        color: color,
+        fields: fields,
         timestamp: new Date().toISOString()
     };
     
     try {
-        await fetch(WEBHOOK_URL, {
+        const response = await fetch(WEBHOOK_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ embeds: [embed] })
         });
+        
+        if (!response.ok) {
+            throw new Error('Erreur Discord');
+        }
     } catch (error) {
         console.error('Erreur Discord:', error);
+        throw error;
     }
 }
 
 // Navigation vers réservation
 function goToReservation(type, option) {
     loadPage('reservation');
-    // Ici on pourrait pré-remplir le formulaire selon l'option
+    // On pourrait pré-remplir le formulaire ici si nécessaire
 }
 
 // Page contact
@@ -420,32 +542,47 @@ function initContactPage() {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            const nom = document.getElementById('nom')?.value;
+            const email = document.getElementById('email')?.value;
+            const sujet = document.getElementById('sujet')?.value;
+            const message = document.getElementById('message')?.value;
+            
+            if (!nom || !email || !sujet || !message) {
+                showContactMessage('Veuillez remplir tous les champs obligatoires', 'error');
+                return;
+            }
+            
             const formData = {
-                nom: document.getElementById('nom').value,
-                email: document.getElementById('email').value,
-                telephone: document.getElementById('telephone').value,
-                sujet: document.getElementById('sujet').value,
-                message: document.getElementById('message').value,
+                nom: nom,
+                email: email,
+                telephone: document.getElementById('telephone')?.value || 'Non renseigné',
+                sujet: sujet,
+                message: message,
                 date: new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })
             };
             
-            const message = document.getElementById('contact-message');
-            
             try {
                 await sendToDiscord(formData, 'contact');
-                
-                message.className = 'alert alert-success';
-                message.textContent = 'Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.';
-                message.style.display = 'block';
-                
+                showContactMessage('Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.', 'success');
                 form.reset();
                 
             } catch (error) {
-                message.className = 'alert alert-error';
-                message.textContent = 'Erreur lors de l\'envoi. Veuillez réessayer.';
-                message.style.display = 'block';
+                showContactMessage('Erreur lors de l\'envoi. Veuillez réessayer.', 'error');
             }
         });
+    }
+}
+
+function showContactMessage(text, type) {
+    const message = document.getElementById('contact-message');
+    if (message) {
+        message.textContent = text;
+        message.className = `alert alert-${type}`;
+        message.style.display = 'block';
+        
+        setTimeout(() => {
+            message.style.display = 'none';
+        }, 5000);
     }
 }
 
@@ -473,14 +610,45 @@ function login() {
         localStorage.setItem('loggedIn', 'true');
         showPersonnelSpace();
     } else {
-        message.textContent = 'Identifiants incorrects';
-        message.style.color = '#dc3545';
+        if (message) {
+            message.textContent = 'Identifiants incorrects';
+            message.style.color = '#dc3545';
+        }
     }
 }
 
 function showPersonnelSpace() {
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('personnel-section').style.display = 'block';
+    const loginSection = document.getElementById('login-section');
+    const personnelSection = document.getElementById('personnel-section');
+    
+    if (loginSection) loginSection.style.display = 'none';
+    if (personnelSection) personnelSection.style.display = 'block';
+}
+
+function showPersonnelTab(tabId) {
+    // Cacher tous les contenus
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    // Désactiver tous les boutons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    // Activer le bon onglet
+    const tab = document.getElementById(tabId);
+    if (tab) {
+        tab.classList.add('active');
+    }
+    
+    // Activer le bon bouton
+    const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => 
+        btn.getAttribute('onclick')?.includes(tabId)
+    );
+    if (activeBtn) {
+        activeBtn.classList.add('active');
+    }
 }
 
 function logout() {

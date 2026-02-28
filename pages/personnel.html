@@ -1015,3 +1015,17 @@
     }
 }
 </style>
+
+<script>
+function showPersonnelTab(tabId) {
+    if (typeof window.showPersonnelTab === 'function') {
+        window.showPersonnelTab(tabId);
+    }
+}
+
+function logout() {
+    if (typeof window.logout === 'function') {
+        window.logout();
+    }
+}
+</script>
