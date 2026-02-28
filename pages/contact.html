@@ -2,27 +2,93 @@
 
 <!-- Formulaire de contact -->
 <form id="contactForm" class="contact-form">
-    <input type="text" id="nom" placeholder="Votre nom" required>
-    <input type="email" id="email" placeholder="Votre email" required>
-    <input type="tel" id="telephone" placeholder="Votre téléphone">
-    <select id="sujet" required>
-        <option value="">Sélectionnez un sujet</option>
-        <option value="reservation">Réservation</option>
-        <option value="information">Demande d'information</option>
-        <option value="reclamation">Réclamation</option>
-        <option value="partenariat">Partenariat</option>
-    </select>
-    <textarea id="message" rows="5" placeholder="Votre message" required></textarea>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="nom">Nom complet *</label>
+            <input type="text" id="nom" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" required>
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone">
+        </div>
+        <div class="form-group">
+            <label for="sujet">Sujet *</label>
+            <select id="sujet" required onchange="toggleReservationFields()">
+                <option value="">Sélectionnez</option>
+                <option value="information">Demande d'information</option>
+                <option value="reservation">Réservation</option>
+                <option value="reclamation">Réclamation</option>
+                <option value="partenariat">Partenariat</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Champs supplémentaires pour réservation -->
+    <div id="reservationFields" style="display: none;">
+        <div class="form-group">
+            <label for="typeReservation">Type de réservation *</label>
+            <select id="typeReservation" onchange="toggleReservationDetails()">
+                <option value="hotel">Hôtel</option>
+                <option value="restaurant">Restaurant</option>
+            </select>
+        </div>
+        
+        <div id="hotelReservationFields" style="display: block;">
+            <div class="form-group">
+                <label for="periode">Période souhaitée *</label>
+                <input type="text" id="periode" placeholder="Ex: du 15 au 18 juillet 2024">
+            </div>
+        </div>
+        
+        <div id="restaurantReservationFields" style="display: none;">
+            <div class="form-group">
+                <label for="dateReservationContact">Date souhaitée *</label>
+                <input type="date" id="dateReservationContact">
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="message">Message *</label>
+        <textarea id="message" rows="5" required></textarea>
+    </div>
+    
     <button type="submit">Envoyer</button>
 </form>
 
 <div id="formMessage" class="message"></div>
 
-<!-- Localisation -->
+<!-- Coordonnées -->
+<div class="info-card" style="margin-top: 3rem;">
+    <h2>Nos coordonnées</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+        <div>
+            <h3><i class="fas fa-map-marker-alt"></i> Adresse</h3>
+            <p>27 rue de la Gare<br>57340 Morhange</p>
+        </div>
+        <div>
+            <h3><i class="fas fa-phone"></i> Téléphone</h3>
+            <p>09 72 65 22 61</p>
+        </div>
+        <div>
+            <h3><i class="fas fa-envelope"></i> Email</h3>
+            <p>hotel-restaurant@shc57.fr</p>
+        </div>
+    </div>
+</div>
+
+<!-- Carte -->
 <h2 style="margin-top: 3rem;">Notre localisation</h2>
 <div class="map-container">
     <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916256937595!2d2.292292615509614!3d48.85837007928746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1647889074152!5m2!1sfr!2sfr" 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916256937595!2d6.641226315509614!3d48.85837007928746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4794a4b8f3e7e2d%3A0x8ddca9ee380ef7e0!2sMorhange!5e0!3m2!1sfr!2sfr!4v1647889074152!5m2!1sfr!2sfr" 
         width="100%" 
         height="100%" 
         style="border:0;" 
@@ -31,10 +97,16 @@
     </iframe>
 </div>
 
-<!-- Horaires -->
-<div style="margin-top: 2rem; background: white; padding: 2rem; border-radius: 10px;">
-    <h3>Horaires d'ouverture</h3>
-    <p>🏨 Réception : 24h/24, 7j/7</p>
-    <p>🍽️ Restaurant : 12h-14h30 et 19h-22h30 (fermé le lundi)</p>
-    <p>💆 Spa : 10h-20h tous les jours</p>
-</div> 
+<script>
+function toggleReservationFields() {
+    const sujet = document.getElementById('sujet').value;
+    const fields = document.getElementById('reservationFields');
+    fields.style.display = sujet === 'reservation' ? 'block' : 'none';
+}
+
+function toggleReservationDetails() {
+    const type = document.getElementById('typeReservation').value;
+    document.getElementById('hotelReservationFields').style.display = type === 'hotel' ? 'block' : 'none';
+    document.getElementById('restaurantReservationFields').style.display = type === 'restaurant' ? 'block' : 'none';
+}
+</script>

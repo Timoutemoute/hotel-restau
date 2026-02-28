@@ -1,0 +1,148 @@
+<h1>Notre Restaurant</h1>
+<p>Cuisine traditionnelle française avec des produits locaux</p>
+
+<div class="restaurant-hero" style="margin: 2rem 0;">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+         alt="Notre restaurant" 
+         style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+</div>
+
+<div class="menu-section">
+    <h2>Notre carte</h2>
+    
+    <div class="menu-category">
+        <h3>Entrées</h3>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Escargots de Bourgogne</h4>
+                <p>Douzaine d'escargots au beurre persillé</p>
+            </div>
+            <div class="menu-item-price">12€</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Foie gras maison</h4>
+                <p>Foie gras de canard, chutney de figues et pain brioché</p>
+            </div>
+            <div class="menu-item-price">14€</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Soupe à l'oignon gratinée</h4>
+                <p>Recette traditionnelle, gratinée au gruyère</p>
+            </div>
+            <div class="menu-item-price">9€</div>
+        </div>
+    </div>
+    
+    <div class="menu-category">
+        <h3>Plats</h3>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Coq au Riesling</h4>
+                <p>Spécialité alsacienne, accompagné de spätzle</p>
+            </div>
+            <div class="menu-item-price">18€</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Entrecôte grillée</h4>
+                <p>Pièce de bœuf de 250g, sauce au choix, frites maison</p>
+            </div>
+            <div class="menu-item-price">22€</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Filet de sandre</h4>
+                <p>Beurre blanc, légumes de saison et riz sauvage</p>
+            </div>
+            <div class="menu-item-price">19€</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Choucroute garnie</h4>
+                <p>Choucroute alsacienne, 5 pièces de charcuterie</p>
+            </div>
+            <div class="menu-item-price">17€</div>
+        </div>
+    </div>
+    
+    <div class="menu-category">
+        <h3>Desserts</h3>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Tarte flambée sucrée</h4>
+                <p>Pommes, cannelle, caramel beurre salé</p>
+            </div>
+            <div class="menu-item-price">7€</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Crème brûlée</h4>
+                <p>À la vanille de Madagascar</p>
+            </div>
+            <div class="menu-item-price">8€</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Profiteroles</h4>
+                <p>Glace vanille, chocolat chaud et amandes effilées</p>
+            </div>
+            <div class="menu-item-price">9€</div>
+        </div>
+    </div>
+</div>
+
+<div class="menu-section">
+    <h2>Menus</h2>
+    
+    <div class="menu-category">
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Menu du Marché</h4>
+                <p>Entrée + Plat + Dessert - Service du déjeuner en semaine</p>
+            </div>
+            <div class="menu-item-price">25€</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Menu Dégustation</h4>
+                <p>Entrée + Plat + Dessert + Café - Carte complète</p>
+            </div>
+            <div class="menu-item-price">35€</div>
+        </div>
+        <div class="menu-item">
+            <div class="menu-item-desc">
+                <h4>Menu Enfant</h4>
+                <p>Plat + Dessert + Boisson - Jusqu'à 12 ans</p>
+            </div>
+            <div class="menu-item-price">12€</div>
+        </div>
+    </div>
+</div>
+
+<div class="info-card" style="text-align: center; margin-top: 2rem;">
+    <h3>Informations pratiques</h3>
+    <p><i class="fas fa-clock"></i> Midi : 12h00 - 14h00 | Soir : 19h00 - 22h00</p>
+    <p><i class="fas fa-calendar-times"></i> Fermé le lundi midi</p>
+    <button class="btn-reserver" onclick="goToReservation('restaurant')" style="margin-top: 1rem;">
+        <i class="fas fa-calendar-check"></i> Réserver une table
+    </button>
+</div>
+
+<style>
+.btn-reserver {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #2C3E50, #3498DB);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.btn-reserver:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52,152,219,0.3);
+}
+</style>

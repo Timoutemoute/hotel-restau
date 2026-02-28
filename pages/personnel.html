@@ -9,7 +9,7 @@
     <div id="loginMessage" style="color: red; margin-top: 1rem;"></div>
 </div>
 
-<!-- Espace personnel (caché par défaut) -->
+<!-- Espace personnel -->
 <div id="personalSpace" style="display: none;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
         <h2>Bienvenue dans l'espace personnel</h2>
@@ -18,69 +18,35 @@
     
     <div class="personal-tabs">
         <button class="personal-tab" onclick="showPersonalTab('protocoles')">📋 Protocoles</button>
-        <button class="personal-tab" onclick="showPersonalTab('contacts')">📞 Contacts personnels</button>
+        <button class="personal-tab" onclick="showPersonalTab('contacts')">📞 Contacts</button>
         <button class="personal-tab" onclick="showPersonalTab('planning')">📅 Planning</button>
         <button class="personal-tab" onclick="showPersonalTab('documents')">📄 Documents</button>
     </div>
     
     <div id="protocoles" class="personal-content">
         <h2>Protocoles internes</h2>
-        <ul style="margin-left: 2rem; margin-top: 1rem;">
-            <li><strong>Protocole d'accueil :</strong> Sourire, contact visuel, proposition d'aide</li>
-            <li><strong>Protocole sécurité incendie :</strong> Alerter, évacuer, confiner</li>
-            <li><strong>Protocole hygiène :</strong> Lavage des mains toutes les heures, port de gants pour la manipulation des aliments</li>
-            <li><strong>Protocole COVID-19 :</strong> Désinfection régulière, distance de sécurité</li>
-            <li><strong>Protocole check-in :</strong> Vérification pièce d'identité, encaissement, présentation des services</li>
-            <li><strong>Protocole check-out :</strong> Vérification de la chambre, facturation, demande d'avis</li>
-            <li><strong>Protocole room service :</strong> Délai maximum 30 minutes, présentation soignée</li>
+        <ul>
+            <li><strong>Accueil :</strong> Sourire, contact visuel, proposition d'aide</li>
+            <li><strong>Sécurité incendie :</strong> Alerter, évacuer, confiner</li>
+            <li><strong>Hygiène :</strong> Lavage des mains régulier</li>
+            <li><strong>Check-in :</strong> Vérification identité, encaissement</li>
+            <li><strong>Check-out :</strong> Vérification chambre, facturation</li>
+            <li><strong>Service en salle :</strong> Délai max 15 minutes</li>
         </ul>
     </div>
     
     <div id="contacts" class="personal-content">
-        <h2>Contacts personnels</h2>
+        <h2>Contacts internes</h2>
         <table>
             <tr>
                 <th>Service</th>
                 <th>Nom</th>
                 <th>Téléphone</th>
-                <th>Email</th>
             </tr>
-            <tr>
-                <td>Direction</td>
-                <td>Jean Dupont</td>
-                <td>01 23 45 67 89</td>
-                <td>direction@leparadis.fr</td>
-            </tr>
-            <tr>
-                <td>Restauration</td>
-                <td>Marie Martin</td>
-                <td>01 23 45 67 88</td>
-                <td>restaurant@leparadis.fr</td>
-            </tr>
-            <tr>
-                <td>Réception</td>
-                <td>Pierre Durand</td>
-                <td>01 23 45 67 87</td>
-                <td>reception@leparadis.fr</td>
-            </tr>
-            <tr>
-                <td>Maintenance</td>
-                <td>Jacques Martin</td>
-                <td>01 23 45 67 86</td>
-                <td>maintenance@leparadis.fr</td>
-            </tr>
-            <tr>
-                <td>Ressources humaines</td>
-                <td>Isabelle Moreau</td>
-                <td>01 23 45 67 85</td>
-                <td>rh@leparadis.fr</td>
-            </tr>
-            <tr>
-                <td>Comptabilité</td>
-                <td>Philippe Dubois</td>
-                <td>01 23 45 67 84</td>
-                <td>compta@leparadis.fr</td>
-            </tr>
+            <tr><td>Direction</td><td>Jean Dupont</td><td>09 72 65 22 61</td></tr>
+            <tr><td>Cuisine</td><td>Marie Martin</td><td>09 72 65 22 62</td></tr>
+            <tr><td>Réception</td><td>Pierre Durand</td><td>09 72 65 22 63</td></tr>
+            <tr><td>Maintenance</td><td>Jacques Martin</td><td>09 72 65 22 64</td></tr>
         </table>
     </div>
     
@@ -89,55 +55,22 @@
         <table>
             <tr>
                 <th>Employé</th>
-                <th>Lundi</th>
-                <th>Mardi</th>
-                <th>Mercredi</th>
-                <th>Jeudi</th>
-                <th>Vendredi</th>
-                <th>Samedi</th>
-                <th>Dimanche</th>
+                <th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th><th>Dim</th>
             </tr>
             <tr>
                 <td>Pierre Durand</td>
-                <td>7h-15h</td>
-                <td>7h-15h</td>
-                <td>Repos</td>
-                <td>15h-23h</td>
-                <td>15h-23h</td>
-                <td>15h-23h</td>
-                <td>7h-15h</td>
-            </tr>
-            <tr>
-                <td>Marie Martin</td>
-                <td>10h-18h</td>
-                <td>10h-18h</td>
-                <td>10h-18h</td>
-                <td>Repos</td>
-                <td>12h-20h</td>
-                <td>12h-20h</td>
-                <td>12h-20h</td>
-            </tr>
-            <tr>
-                <td>Lucie Petit</td>
-                <td>8h-16h</td>
-                <td>8h-16h</td>
-                <td>8h-16h</td>
-                <td>8h-16h</td>
-                <td>Repos</td>
-                <td>10h-18h</td>
-                <td>10h-18h</td>
+                <td>7h-15h</td><td>7h-15h</td><td>Repos</td><td>15h-23h</td><td>15h-23h</td><td>15h-23h</td><td>7h-15h</td>
             </tr>
         </table>
     </div>
     
     <div id="documents" class="personal-content">
         <h2>Documents internes</h2>
-        <ul style="margin-left: 2rem;">
-            <li><a href="#" style="color: #667eea;">📄 Manuel de procédures 2024</a></li>
-            <li><a href="#" style="color: #667eea;">📄 Guide d'accueil client</a></li>
-            <li><a href="#" style="color: #667eea;">📄 Fiches techniques des plats</a></li>
-            <li><a href="#" style="color: #667eea;">📄 Planning des congés</a></li>
-            <li><a href="#" style="color: #667eea;">📄 Registre de sécurité</a></li>
+        <ul>
+            <li><a href="#">📄 Manuel de procédures 2024</a></li>
+            <li><a href="#">📄 Guide d'accueil</a></li>
+            <li><a href="#">📄 Fiches techniques plats</a></li>
+            <li><a href="#">📄 Planning des congés</a></li>
         </ul>
     </div>
 </div>

@@ -1,0 +1,179 @@
+<h1>Réservation</h1>
+
+<form id="reservationForm" class="reservation-form" onsubmit="event.preventDefault(); submitReservation();">
+    <div class="form-group">
+        <label for="reservationType">Type de réservation *</label>
+        <select id="reservationType" required>
+            <option value="">Sélectionnez</option>
+            <option value="hotel">Hôtel (nuitées)</option>
+            <option value="restaurant">Restaurant (repas)</option>
+        </select>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group">
+            <label for="nom">Nom complet *</label>
+            <input type="text" id="nom" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" required>
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group">
+            <label for="telephone">Téléphone *</label>
+            <input type="tel" id="telephone" required>
+        </div>
+        <div class="form-group">
+            <label for="demande">Demande particulière</label>
+            <input type="text" id="demande" placeholder="Allergies, régime, etc.">
+        </div>
+    </div>
+    
+    <!-- Options Hôtel -->
+    <div id="hotelOptions" class="booking-options" style="display: none;">
+        <h3>Réservation Hôtel</h3>
+        
+        <div class="form-group">
+            <label for="chambre">Type de chambre *</label>
+            <select id="chambre">
+                <option value="standard">Standard - 80€/nuit</option>
+                <option value="superieure">Supérieure - 120€/nuit</option>
+                <option value="deluxe">Deluxe - 180€/nuit</option>
+                <option value="familiale">Suite Familiale - 250€/nuit</option>
+            </select>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="arrivee">Date d'arrivée *</label>
+                <input type="date" id="arrivee" min="2024-01-01">
+            </div>
+            <div class="form-group">
+                <label for="depart">Date de départ *</label>
+                <input type="date" id="depart" min="2024-01-01">
+            </div>
+        </div>
+        
+        <div class="people-counter">
+            <div class="counter-group">
+                <label>Adultes (12+)</label>
+                <button type="button" class="counter-btn moins" data-type="adultesHotel">-</button>
+                <input type="number" id="adultesHotel" value="1" min="1" readonly style="width: 50px; text-align: center;">
+                <button type="button" class="counter-btn plus" data-type="adultesHotel">+</button>
+            </div>
+            
+            <div class="counter-group">
+                <label>Enfants (-12)</label>
+                <button type="button" class="counter-btn moins" data-type="enfantsHotel">-</button>
+                <input type="number" id="enfantsHotel" value="0" min="0" readonly style="width: 50px; text-align: center;">
+                <button type="button" class="counter-btn plus" data-type="enfantsHotel">+</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Options Restaurant -->
+    <div id="restaurantOptions" class="booking-options" style="display: none;">
+        <h3>Réservation Restaurant</h3>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="dateReservation">Date *</label>
+                <input type="date" id="dateReservation" min="2024-01-01">
+            </div>
+            <div class="form-group">
+                <label for="heure">Heure *</label>
+                <select id="heure">
+                    <option value="12:00">12:00</option>
+                    <option value="12:30">12:30</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:30">13:30</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="people-counter">
+            <div class="counter-group">
+                <label>Adultes</label>
+                <button type="button" class="counter-btn moins" data-type="adultes">-</button>
+                <input type="number" id="adultes" value="2" min="1" readonly style="width: 50px; text-align: center;">
+                <button type="button" class="counter-btn plus" data-type="adultes">+</button>
+            </div>
+            
+            <div class="counter-group">
+                <label>Adolescents (12-17)</label>
+                <button type="button" class="counter-btn moins" data-type="ados">-</button>
+                <input type="number" id="ados" value="0" min="0" readonly style="width: 50px; text-align: center;">
+                <button type="button" class="counter-btn plus" data-type="ados">+</button>
+            </div>
+            
+            <div class="counter-group">
+                <label>Enfants (-12)</label>
+                <button type="button" class="counter-btn moins" data-type="enfants">-</button>
+                <input type="number" id="enfants" value="0" min="0" readonly style="width: 50px; text-align: center;">
+                <button type="button" class="counter-btn plus" data-type="enfants">+</button>
+            </div>
+        </div>
+        
+        <h4 style="margin: 1rem 0;">Choisissez votre menu</h4>
+        <div class="package-options">
+            <div class="package-card" data-price="25">
+                <h4>Menu du Marché</h4>
+                <p>Entrée + Plat + Dessert</p>
+                <div class="price">25€ <small>/pers</small></div>
+            </div>
+            <div class="package-card" data-price="35">
+                <h4>Menu Dégustation</h4>
+                <p>Entrée + Plat + Dessert + Café</p>
+                <div class="price">35€ <small>/pers</small></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="booking-total">
+        Total estimé : <span id="totalPrice">0 €</span>
+    </div>
+    
+    <button type="submit" class="btn-reserver" style="width: 100%; padding: 1rem; font-size: 1.2rem;">
+        Confirmer la réservation
+    </button>
+    
+    <div id="reservationMessage" class="message" style="margin-top: 1rem;"></div>
+</form>
+
+<style>
+.btn-reserver {
+    background: linear-gradient(135deg, #2C3E50, #3498DB);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.btn-reserver:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(52,152,219,0.3);
+}
+.message {
+    padding: 1rem;
+    border-radius: 5px;
+    display: none;
+}
+.message.success {
+    display: block;
+    background: #d4edda;
+    color: #155724;
+}
+.message.error {
+    display: block;
+    background: #f8d7da;
+    color: #721c24;
+}
+</style>

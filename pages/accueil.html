@@ -1,23 +1,67 @@
-<h1>Bienvenue à l'Hôtel-Restaurant Le Paradis</h1>
-<p>Découvrez un lieu d'exception où luxe et authenticité se rencontrent.</p>
+<h1>Bienvenue à l'Hôtel-Restaurant Belle Vue</h1>
+<p class="intro-text">Découvrez un lieu d'exception où confort et gastronomie se rencontrent à Morhange.</p>
 
-<div style="margin-top: 2rem;">
+<div class="hero-image" style="margin: 2rem 0;">
     <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-         alt="Hôtel" 
-         style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+         alt="Hôtel Belle Vue" 
+         style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
 </div>
 
-<div style="margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-    <div style="text-align: center; padding: 2rem; background: white; border-radius: 10px;">
-        <h3>🏨 Hébergement de luxe</h3>
-        <p>Chambres spacieuses avec vue imprenable</p>
+<div class="features-grid">
+    <div class="feature-card" onclick="loadPage('chambres')">
+        <i class="fas fa-bed" style="font-size: 3rem; color: #3498DB; margin-bottom: 1rem;"></i>
+        <h3>Chambres confortables</h3>
+        <p>8 chambres spacieuses avec vue sur le jardin</p>
+        <button class="btn-primary" style="margin-top: 1rem;">Voir les chambres</button>
     </div>
-    <div style="text-align: center; padding: 2rem; background: white; border-radius: 10px;">
-        <h3>🍽️ Restaurant gastronomique</h3>
-        <p>Cuisine étoilée par notre chef Marie Martin</p>
+    
+    <div class="feature-card" onclick="loadPage('restaurant')">
+        <i class="fas fa-utensils" style="font-size: 3rem; color: #3498DB; margin-bottom: 1rem;"></i>
+        <h3>Restaurant traditionnel</h3>
+        <p>Cuisine française authentique et produits locaux</p>
+        <button class="btn-primary" style="margin-top: 1rem;">Voir le menu</button>
     </div>
-    <div style="text-align: center; padding: 2rem; background: white; border-radius: 10px;">
-        <h3>💆 Spa & Bien-être</h3>
-        <p>Espace détente de 500m² avec piscine</p>
+    
+    <div class="feature-card" onclick="loadPage('reservation')">
+        <i class="fas fa-calendar-check" style="font-size: 3rem; color: #3498DB; margin-bottom: 1rem;"></i>
+        <h3>Réservation en ligne</h3>
+        <p>Réservez votre chambre ou votre table en quelques clics</p>
+        <button class="btn-primary" style="margin-top: 1rem;">Réserver</button>
     </div>
 </div>
+
+<div class="info-card" style="margin-top: 3rem; text-align: center;">
+    <h2>Nos coordonnées</h2>
+    <p><i class="fas fa-map-marker-alt"></i> 27 rue de la Gare, 57340 Morhange</p>
+    <p><i class="fas fa-phone"></i> 09 72 65 22 61</p>
+    <p><i class="fas fa-envelope"></i> hotel-restaurant@shc57.fr</p>
+</div>
+
+<style>
+.feature-card {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.btn-primary {
+    background: linear-gradient(135deg, #2C3E50, #3498DB);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52,152,219,0.3);
+}
+.intro-text {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+</style>

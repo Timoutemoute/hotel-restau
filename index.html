@@ -3,49 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hôtel-Restaurant Le Paradis</title>
+    <title>Hôtel-Restaurant Belle Vue</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation principale -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">🏨 Le Paradis</div>
+            <div class="logo">
+                <i class="fas fa-hotel"></i> Belle Vue
+            </div>
             <div class="nav-links">
                 <button onclick="loadPage('accueil')">Accueil</button>
-                <button onclick="loadPage('cgu')">CGU</button>
-                <button onclick="loadPage('mentions')">Mentions légales</button>
-                <button onclick="loadPage('confidentialite')">Politique de confidentialité</button>
+                <button onclick="loadPage('chambres')">Chambres</button>
+                <button onclick="loadPage('restaurant')">Restaurant</button>
+                <button onclick="loadPage('reservation')">Réservation</button>
                 <button onclick="loadPage('contact')">Contact</button>
                 <button onclick="loadPage('equipe')">Équipe</button>
-                <button onclick="loadPage('personnel')">Accès personnel</button>
+                <button onclick="loadPage('personnel')">Espace personnel</button>
             </div>
         </div>
     </nav>
 
     <!-- Contenu principal -->
-    <div class="main-content" id="main-content">
-        <!-- Le contenu des pages sera chargé ici -->
-    </div>
+    <div class="main-content" id="main-content"></div>
 
-    <!-- Instructions webhook Discord -->
-    <div style="position: fixed; bottom: 20px; right: 20px; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); max-width: 300px; display: none;" id="webhookInstructions">
-        <h4 style="margin-bottom: 10px; color: #667eea;">📝 Configuration du webhook Discord</h4>
-        <ol style="margin-left: 20px; font-size: 0.9rem;">
-            <li>Allez dans les paramètres de votre serveur Discord</li>
-            <li>Cliquez sur "Intégrations" puis "Webhooks"</li>
-            <li>Créez un nouveau webhook</li>
-            <li>Copiez l'URL générée</li>
-            <li>Remplacez 'VOTRE_URL_WEBHOOK_ICI' par cette URL dans le fichier main.js</li>
-        </ol>
-        <button onclick="this.parentElement.style.display='none'" style="margin-top: 10px; padding: 5px 10px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">Fermer</button>
-    </div>
+    <!-- Footer avec informations légales -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-hotel"></i> Belle Vue</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 27 rue de la Gare, 57340 Morhange</p>
+                <p><i class="fas fa-phone"></i> 09 72 65 22 61</p>
+                <p><i class="fas fa-envelope"></i> hotel-restaurant@shc57.fr</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Liens rapides</h3>
+                <ul>
+                    <li><a href="#" onclick="loadPage('chambres')">Nos chambres</a></li>
+                    <li><a href="#" onclick="loadPage('restaurant')">Notre restaurant</a></li>
+                    <li><a href="#" onclick="loadPage('reservation')">Réservation</a></li>
+                    <li><a href="#" onclick="loadPage('contact')">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Informations légales</h3>
+                <ul>
+                    <li><a href="#" onclick="loadPage('mentions')">Mentions légales</a></li>
+                    <li><a href="#" onclick="loadPage('cgu')">CGU</a></li>
+                    <li><a href="#" onclick="loadPage('confidentialite')">Confidentialité</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Horaires</h3>
+                <p><i class="fas fa-clock"></i> Réception: 24h/24</p>
+                <p><i class="fas fa-utensils"></i> Restaurant: 12h-14h • 19h-22h</p>
+                <p><i class="fas fa-concierge-bell"></i> Fermé lundi midi</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Hôtel-Restaurant Belle Vue - Tous droits réservés</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tripadvisor"></i></a>
+            </div>
+        </div>
+    </footer>
 
-    <!-- Bouton pour afficher les instructions webhook -->
-    <button onclick="document.getElementById('webhookInstructions').style.display='block'" style="position: fixed; bottom: 20px; left: 20px; padding: 10px 20px; background: #5865F2; color: white; border: none; border-radius: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 1000;">
-        🤖 Configurer Discord
-    </button>
-
+    <!-- Scripts -->
     <script src="js/main.js"></script>
 </body>
 </html>
