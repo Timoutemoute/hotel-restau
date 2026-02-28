@@ -3,75 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hôtel-Restaurant Belle Vue</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Hôtel Belle Vue · Restaurant Gastronomique</title>
+    
+    <!-- SEO & Métadonnées -->
+    <meta name="description" content="Hôtel Belle Vue à Morhange : chambres élégantes et restaurant gastronomique. Réservez votre séjour en Lorraine.">
+    <meta name="keywords" content="hôtel Morhange, restaurant gastronomique, chambres d'hôtes, Lorraine, hébergement, gastronomie">
+    <meta name="author" content="Hôtel Belle Vue">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hotel-bellevue.fr">
+    <meta property="og:title" content="Hôtel Belle Vue · Restaurant Gastronomique">
+    <meta property="og:description" content="Élégance et gastronomie en Lorraine">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1566073771259-6a8506099945">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Navigation principale -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-hotel"></i> Belle Vue
-            </div>
-            <div class="nav-links">
-                <button onclick="loadPage('accueil')">Accueil</button>
-                <button onclick="loadPage('chambres')">Chambres</button>
-                <button onclick="loadPage('restaurant')">Restaurant</button>
-                <button onclick="loadPage('reservation')">Réservation</button>
-                <button onclick="loadPage('contact')">Contact</button>
-                <button onclick="loadPage('equipe')">Équipe</button>
-                <button onclick="loadPage('personnel')">Espace personnel</button>
+    <!-- Header avec navigation -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-contact">
+                    <span><i class="fas fa-phone-alt"></i> 09 72 65 22 61</span>
+                    <span><i class="fas fa-map-marker-alt"></i> 27 rue de la Gare, 57340 Morhange</span>
+                    <span><i class="fas fa-envelope"></i> hotel-restaurant@shc57.fr</span>
+                </div>
+                <div class="header-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Tripadvisor"><i class="fab fa-tripadvisor"></i></a>
+                </div>
             </div>
         </div>
-    </nav>
+        
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="#" onclick="loadPage('accueil'); return false;">
+                        <span class="logo-main">Belle Vue</span>
+                        <span class="logo-sub">Hôtel & Restaurant</span>
+                    </a>
+                </div>
+                
+                <div class="nav-menu">
+                    <ul class="nav-links">
+                        <li><a href="#" onclick="loadPage('accueil'); return false;">Accueil</a></li>
+                        <li><a href="#" onclick="loadPage('chambres'); return false;">Chambres</a></li>
+                        <li><a href="#" onclick="loadPage('restaurant'); return false;">Restaurant</a></li>
+                        <li><a href="#" onclick="loadPage('reservation'); return false;">Réservation</a></li>
+                        <li><a href="#" onclick="loadPage('contact'); return false;">Contact</a></li>
+                        <li><a href="#" onclick="loadPage('equipe'); return false;">Équipe</a></li>
+                        <li class="dropdown">
+                            <a href="#">Informations <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" onclick="loadPage('mentions'); return false;">Mentions légales</a></li>
+                                <li><a href="#" onclick="loadPage('cgu'); return false;">CGU</a></li>
+                                <li><a href="#" onclick="loadPage('confidentialite'); return false;">Confidentialité</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" onclick="loadPage('personnel'); return false;" class="btn-personnel"><i class="fas fa-user-lock"></i> Personnel</a></li>
+                    </ul>
+                </div>
+                
+                <button class="menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
 
     <!-- Contenu principal -->
-    <div class="main-content" id="main-content"></div>
+    <main class="main-content" id="main-content"></main>
 
-    <!-- Footer avec informations légales -->
+    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3><i class="fas fa-hotel"></i> Belle Vue</h3>
-                <p><i class="fas fa-map-marker-alt"></i> 27 rue de la Gare, 57340 Morhange</p>
-                <p><i class="fas fa-phone"></i> 09 72 65 22 61</p>
-                <p><i class="fas fa-envelope"></i> hotel-restaurant@shc57.fr</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Liens rapides</h3>
-                <ul>
-                    <li><a href="#" onclick="loadPage('chambres')">Nos chambres</a></li>
-                    <li><a href="#" onclick="loadPage('restaurant')">Notre restaurant</a></li>
-                    <li><a href="#" onclick="loadPage('reservation')">Réservation</a></li>
-                    <li><a href="#" onclick="loadPage('contact')">Contact</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Informations légales</h3>
-                <ul>
-                    <li><a href="#" onclick="loadPage('mentions')">Mentions légales</a></li>
-                    <li><a href="#" onclick="loadPage('cgu')">CGU</a></li>
-                    <li><a href="#" onclick="loadPage('confidentialite')">Confidentialité</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Horaires</h3>
-                <p><i class="fas fa-clock"></i> Réception: 24h/24</p>
-                <p><i class="fas fa-utensils"></i> Restaurant: 12h-14h • 19h-22h</p>
-                <p><i class="fas fa-concierge-bell"></i> Fermé lundi midi</p>
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <div class="footer-logo">
+                            <h3>Belle Vue</h3>
+                            <p>Hôtel & Restaurant</p>
+                        </div>
+                        <p class="footer-desc">
+                            Établissement de charme en Lorraine, alliant élégance et gastronomie depuis 1985.
+                        </p>
+                        <div class="footer-awards">
+                            <img src="https://via.placeholder.com/80x40" alt="Logos certifications">
+                        </div>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <ul class="footer-contact">
+                            <li><i class="fas fa-map-marker-alt"></i> 27 rue de la Gare<br>57340 Morhange</li>
+                            <li><i class="fas fa-phone-alt"></i> 09 72 65 22 61</li>
+                            <li><i class="fas fa-envelope"></i> hotel-restaurant@shc57.fr</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Horaires</h4>
+                        <ul class="footer-hours">
+                            <li><span>Réception:</span> 24h/24 - 7j/7</li>
+                            <li><span>Restaurant midi:</span> 12h00 - 14h00</li>
+                            <li><span>Restaurant soir:</span> 19h00 - 22h00</li>
+                            <li><span>Fermeture:</span> Lundi midi</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Newsletter</h4>
+                        <p>Recevez nos offres spéciales</p>
+                        <form class="footer-newsletter" onsubmit="event.preventDefault();">
+                            <input type="email" placeholder="Votre email" required>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                        <div class="footer-payment">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2024 Hôtel-Restaurant Belle Vue - Tous droits réservés</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-tripadvisor"></i></a>
+            <div class="container">
+                <p>&copy; 2024 Hôtel Belle Vue. Tous droits réservés. Conçu avec <i class="fas fa-heart"></i> en Lorraine.</p>
+                <ul class="footer-legal">
+                    <li><a href="#" onclick="loadPage('mentions'); return false;">Mentions légales</a></li>
+                    <li><a href="#" onclick="loadPage('cgu'); return false;">CGU</a></li>
+                    <li><a href="#" onclick="loadPage('confidentialite'); return false;">Confidentialité</a></li>
+                </ul>
             </div>
         </div>
     </footer>

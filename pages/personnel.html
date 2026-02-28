@@ -1,76 +1,1017 @@
-<h1>Accès personnel</h1>
+<div class="container">
+    <!-- Section connexion -->
+    <div id="login-section">
+        <div class="page-header">
+            <h1>Espace Personnel</h1>
+            <p>Accès réservé aux collaborateurs</p>
+        </div>
 
-<!-- Formulaire de connexion -->
-<div id="loginForm" class="login-form">
-    <h2>Connexion personnel</h2>
-    <input type="text" id="username" placeholder="Nom d'utilisateur">
-    <input type="password" id="password" placeholder="Mot de passe">
-    <button onclick="login()">Se connecter</button>
-    <div id="loginMessage" style="color: red; margin-top: 1rem;"></div>
+        <div class="login-wrapper">
+            <div class="login-card">
+                <div class="login-header">
+                    <i class="fas fa-user-lock"></i>
+                    <h2>Connexion</h2>
+                    <p>Veuillez vous identifier pour accéder à l'espace personnel</p>
+                </div>
+
+                <form id="login-form" class="login-form" onsubmit="event.preventDefault(); login();">
+                    <div class="form-group">
+                        <label for="username">Nom d'utilisateur</label>
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" class="form-control" placeholder="admin" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fas fa-sign-in-alt"></i> Se connecter
+                    </button>
+
+                    <div id="login-message" class="login-message"></div>
+                </form>
+
+                <div class="login-footer">
+                    <p>Identifiants par défaut : admin / Bellevue2024!</p>
+                    <p class="note">Pour des raisons de sécurité, changez votre mot de passe régulièrement.</p>
+                </div>
+            </div>
+
+            <div class="login-info">
+                <div class="info-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Accès sécurisé</h3>
+                    <p>Connexion cryptée et protégée</p>
+                </div>
+                <div class="info-badge">
+                    <i class="fas fa-clock"></i>
+                    <h3>Disponible 24h/24</h3>
+                    <p>Accédez aux documents à tout moment</p>
+                </div>
+                <div class="info-badge">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Responsive</h3>
+                    <p>Espace adapté à tous vos appareils</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Espace personnel (caché par défaut) -->
+    <div id="personnel-section" style="display: none;">
+        <div class="personnel-header">
+            <h1>Bonjour, <span id="user-name">Admin</span></h1>
+            <div class="header-actions">
+                <span class="last-connection">
+                    <i class="fas fa-clock"></i> Dernière connexion : aujourd'hui 08:24
+                </span>
+                <button onclick="logout()" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <i class="fas fa-calendar-check"></i>
+                <div class="card-info">
+                    <h3>Réservations du jour</h3>
+                    <p class="card-number">12</p>
+                    <span>8 hôtel · 4 restaurant</span>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <i class="fas fa-door-open"></i>
+                <div class="card-info">
+                    <h3>Taux d'occupation</h3>
+                    <p class="card-number">75%</p>
+                    <span>6 chambres disponibles</span>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <i class="fas fa-users"></i>
+                <div class="card-info">
+                    <h3>Personnel présent</h3>
+                    <p class="card-number">9/15</p>
+                    <span>6 en repos · 0 absent</span>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <i class="fas fa-euro-sign"></i>
+                <div class="card-info">
+                    <h3>CA du jour</h3>
+                    <p class="card-number">2 850€</p>
+                    <span>+15% vs hier</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation onglets -->
+        <div class="personnel-tabs">
+            <button class="tab-btn active" onclick="showPersonnelTab('protocoles')">
+                <i class="fas fa-clipboard-list"></i> Protocoles
+            </button>
+            <button class="tab-btn" onclick="showPersonnelTab('planning')">
+                <i class="fas fa-calendar-alt"></i> Planning
+            </button>
+            <button class="tab-btn" onclick="showPersonnelTab('documents')">
+                <i class="fas fa-folder-open"></i> Documents
+            </button>
+            <button class="tab-btn" onclick="showPersonnelTab('annuaire')">
+                <i class="fas fa-address-book"></i> Annuaire
+            </button>
+            <button class="tab-btn" onclick="showPersonnelTab('formations')">
+                <i class="fas fa-graduation-cap"></i> Formations
+            </button>
+        </div>
+
+        <!-- Contenu des onglets -->
+        <div class="personnel-content">
+            <!-- Protocoles -->
+            <div id="protocoles" class="tab-content active">
+                <h2>Protocoles internes</h2>
+                
+                <div class="protocols-grid">
+                    <div class="protocol-category">
+                        <h3><i class="fas fa-hand-sparkles"></i> Hygiène & Sécurité</h3>
+                        <ul>
+                            <li><strong>Lavage des mains :</strong> toutes les heures</li>
+                            <li><strong>Désinfection :</strong> après chaque contact client</li>
+                            <li><strong>Masques :</strong> disponibles à l'accueil</li>
+                            <li><strong>Produits :</strong> utilisation des produits certifiés</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="protocol-category">
+                        <h3><i class="fas fa-concierge-bell"></i> Accueil client</h3>
+                        <ul>
+                            <li><strong>Check-in :</strong> sourire, contact visuel, offre d'aide</li>
+                            <li><strong>Bagages :</strong> proposition systématique</li>
+                            <li><strong>Présentation :</strong> services, horaires, Wifi</li>
+                            <li><strong>Check-out :</strong> demande d'avis, au revoir personnalisé</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="protocol-category">
+                        <h3><i class="fas fa-utensils"></i> Restaurant</h3>
+                        <ul>
+                            <li><strong>Mise en place :</strong> 1h avant service</li>
+                            <li><strong>Accueil :</strong> dans les 2 minutes</li>
+                            <li><strong>Service :</strong> maximum 15 minutes entre les plats</li>
+                            <li><strong>Débarrassage :</strong> dans les 3 minutes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="protocol-category">
+                        <h3><i class="fas fa-broom"></i> Gouvernante</h3>
+                        <ul>
+                            <li><strong>Check-list :</strong> 32 points de contrôle</li>
+                            <li><strong>Literie :</strong> changement tous les 3 jours</li>
+                            <li><strong>Produits :</strong> dosage précis des produits</li>
+                            <li><strong>Signalement :</strong> toute anomalie à signaler</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Planning -->
+            <div id="planning" class="tab-content">
+                <h2>Planning de la semaine</h2>
+                
+                <div class="planning-filters">
+                    <button class="filter-btn active">Semaine 9</button>
+                    <button class="filter-btn">Semaine 10</button>
+                    <button class="filter-btn">Semaine 11</button>
+                </div>
+
+                <div class="planning-table-container">
+                    <table class="planning-table">
+                        <thead>
+                            <tr>
+                                <th>Employé</th>
+                                <th>Lundi 26</th>
+                                <th>Mardi 27</th>
+                                <th>Mercredi 28</th>
+                                <th>Jeudi 29</th>
+                                <th>Vendredi 1</th>
+                                <th>Samedi 2</th>
+                                <th>Dimanche 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pierre Durand</td>
+                                <td class="shift-morning">7h-15h</td>
+                                <td class="shift-morning">7h-15h</td>
+                                <td class="shift-off">Repos</td>
+                                <td class="shift-afternoon">15h-23h</td>
+                                <td class="shift-afternoon">15h-23h</td>
+                                <td class="shift-afternoon">15h-23h</td>
+                                <td class="shift-morning">7h-15h</td>
+                            </tr>
+                            <tr>
+                                <td>Marie Martin</td>
+                                <td class="shift-morning">10h-18h</td>
+                                <td class="shift-morning">10h-18h</td>
+                                <td class="shift-morning">10h-18h</td>
+                                <td class="shift-off">Repos</td>
+                                <td class="shift-afternoon">12h-20h</td>
+                                <td class="shift-afternoon">12h-20h</td>
+                                <td class="shift-afternoon">12h-20h</td>
+                            </tr>
+                            <tr>
+                                <td>Lucie Petit</td>
+                                <td class="shift-morning">8h-16h</td>
+                                <td class="shift-morning">8h-16h</td>
+                                <td class="shift-morning">8h-16h</td>
+                                <td class="shift-morning">8h-16h</td>
+                                <td class="shift-off">Repos</td>
+                                <td class="shift-morning">10h-18h</td>
+                                <td class="shift-morning">10h-18h</td>
+                            </tr>
+                            <tr>
+                                <td>Thomas Bernard</td>
+                                <td class="shift-off">Repos</td>
+                                <td class="shift-afternoon">16h-00h</td>
+                                <td class="shift-afternoon">16h-00h</td>
+                                <td class="shift-afternoon">16h-00h</td>
+                                <td class="shift-afternoon">16h-00h</td>
+                                <td class="shift-afternoon">16h-00h</td>
+                                <td class="shift-off">Repos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="planning-legend">
+                    <span><span class="legend-color shift-morning"></span> Matin (7h-15h)</span>
+                    <span><span class="legend-color shift-afternoon"></span> Après-midi (15h-23h)</span>
+                    <span><span class="legend-color shift-night"></span> Nuit (23h-7h)</span>
+                    <span><span class="legend-color shift-off"></span> Repos</span>
+                </div>
+            </div>
+
+            <!-- Documents -->
+            <div id="documents" class="tab-content">
+                <h2>Documents internes</h2>
+                
+                <div class="documents-grid">
+                    <div class="document-folder">
+                        <h3><i class="fas fa-folder"></i> Procédures</h3>
+                        <ul class="document-list">
+                            <li>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Manuel de procédures 2024</span>
+                                <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Guide d'accueil client</span>
+                                <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Protocole sécurité incendie</span>
+                                <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="document-folder">
+                        <h3><i class="fas fa-folder"></i> Restaurant</h3>
+                        <ul class="document-list">
+                            <li>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Fiches techniques des plats</span>
+                                <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Carte des vins</span>
+                                <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Guide des accords mets-vins</span>
+                                <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="document-folder">
+                        <h3><i class="fas fa-folder"></i> RH & Administratif</h3>
+                        <ul class="document-list">
+                            <li>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Planning des congés</span>
+                                <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-excel"></i>
+                                <span>Formulaire de demande d'absence</span>
+                                <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Règlement intérieur</span>
+                                <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Annuaire -->
+            <div id="annuaire" class="tab-content">
+                <h2>Annuaire interne</h2>
+                
+                <div class="annuaire-grid">
+                    <div class="contact-card">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>Jean Dupont</h3>
+                        <p class="contact-role">Directeur</p>
+                        <p class="contact-phone"><i class="fas fa-phone"></i> 09 72 65 22 61</p>
+                        <p class="contact-email"><i class="fas fa-envelope"></i> direction@shc57.fr</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>Marie Martin</h3>
+                        <p class="contact-role">Chef de cuisine</p>
+                        <p class="contact-phone"><i class="fas fa-phone"></i> 09 72 65 22 62</p>
+                        <p class="contact-email"><i class="fas fa-envelope"></i> cuisine@shc57.fr</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>Pierre Durand</h3>
+                        <p class="contact-role">Réception</p>
+                        <p class="contact-phone"><i class="fas fa-phone"></i> 09 72 65 22 63</p>
+                        <p class="contact-email"><i class="fas fa-envelope"></i> reception@shc57.fr</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>Lucie Petit</h3>
+                        <p class="contact-role">Gouvernante</p>
+                        <p class="contact-phone"><i class="fas fa-phone"></i> 09 72 65 22 64</p>
+                        <p class="contact-email"><i class="fas fa-envelope"></i> gouvernante@shc57.fr</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>Marc Dubois</h3>
+                        <p class="contact-role">Maintenance</p>
+                        <p class="contact-phone"><i class="fas fa-phone"></i> 09 72 65 22 65</p>
+                        <p class="contact-email"><i class="fas fa-envelope"></i> technique@shc57.fr</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>Julie Mercier</h3>
+                        <p class="contact-role">Commerciale</p>
+                        <p class="contact-phone"><i class="fas fa-phone"></i> 09 72 65 22 66</p>
+                        <p class="contact-email"><i class="fas fa-envelope"></i> commercial@shc57.fr</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formations -->
+            <div id="formations" class="tab-content">
+                <h2>Plan de formation 2024</h2>
+                
+                <div class="formations-list">
+                    <div class="formation-item">
+                        <div class="formation-date">15-17 Mars</div>
+                        <div class="formation-details">
+                            <h3>Perfectionnement en sommellerie</h3>
+                            <p>Formation animée par Thomas Bernard - 3 jours</p>
+                            <span class="formation-status status-confirmed">Confirmé</span>
+                        </div>
+                        <div class="formation-participants">
+                            <i class="fas fa-users"></i> 4 inscrits
+                        </div>
+                    </div>
+                    
+                    <div class="formation-item">
+                        <div class="formation-date">5-6 Avril</div>
+                        <div class="formation-details">
+                            <h3>Anglais professionnel</h3>
+                            <p>Niveau intermédiaire - Accueil client</p>
+                            <span class="formation-status status-planned">Planifié</span>
+                        </div>
+                        <div class="formation-participants">
+                            <i class="fas fa-users"></i> 6 inscrits
+                        </div>
+                    </div>
+                    
+                    <div class="formation-item">
+                        <div class="formation-date">20 Mai</div>
+                        <div class="formation-details">
+                            <h3>Sécurité incendie</h3>
+                            <p>Formation obligatoire - Manipulation extincteurs</p>
+                            <span class="formation-status status-required">Obligatoire</span>
+                        </div>
+                        <div class="formation-participants">
+                            <i class="fas fa-users"></i> 12 inscrits
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- Espace personnel -->
-<div id="personalSpace" style="display: none;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-        <h2>Bienvenue dans l'espace personnel</h2>
-        <button onclick="logout()" style="padding: 0.5rem 1rem; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">Déconnexion</button>
-    </div>
+<style>
+/* Login */
+.login-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 40px;
+    margin: 40px 0;
+}
+
+.login-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: var(--shadow-hover);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.login-header h2 {
+    margin-bottom: 10px;
+    color: var(--secondary);
+}
+
+.login-header p {
+    color: var(--gray);
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+}
+
+.input-group input {
+    padding-left: 45px;
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.login-message {
+    margin-top: 20px;
+    color: #dc3545;
+    text-align: center;
+}
+
+.login-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--light-gray);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.login-footer .note {
+    margin-top: 10px;
+    font-style: italic;
+    color: #999;
+}
+
+.login-info {
+    display: grid;
+    gap: 20px;
+}
+
+.info-badge {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.info-badge i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.info-badge h3 {
+    margin-bottom: 5px;
+    color: var(--secondary);
+    font-size: 1rem;
+}
+
+.info-badge p {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Personnel Header */
+.personnel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.personnel-header h1 {
+    margin-bottom: 0;
+    font-size: 2rem;
+}
+
+.personnel-header h1:after {
+    display: none;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.last-connection {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.last-connection i {
+    margin-right: 5px;
+    color: var(--primary);
+}
+
+.btn-logout {
+    padding: 10px 20px;
+    background: none;
+    border: 1px solid #dc3545;
+    color: #dc3545;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-logout:hover {
+    background: #dc3545;
+    color: var(--white);
+}
+
+.btn-logout i {
+    margin-right: 5px;
+}
+
+/* Dashboard */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.dashboard-card {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow);
+}
+
+.dashboard-card i {
+    font-size: 2.5rem;
+    color: var(--primary);
+}
+
+.card-info h3 {
+    margin-bottom: 5px;
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+.card-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--secondary);
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.card-info span {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+/* Tabs */
+.personnel-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 12px 25px;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    color: var(--secondary);
+}
+
+.tab-btn i {
+    margin-right: 8px;
+}
+
+.tab-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.tab-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+}
+
+.tab-content {
+    display: none;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+/* Protocols */
+.protocols-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.protocol-category {
+    background: rgba(196, 164, 132, 0.05);
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.protocol-category h3 {
+    margin-bottom: 20px;
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.protocol-category h3 i {
+    color: var(--primary);
+}
+
+.protocol-category ul {
+    list-style: none;
+}
+
+.protocol-category li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(196, 164, 132, 0.1);
+    color: var(--gray);
+}
+
+.protocol-category li:last-child {
+    border-bottom: none;
+}
+
+.protocol-category strong {
+    color: var(--secondary);
+}
+
+/* Planning */
+.planning-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    padding: 8px 20px;
+    background: none;
+    border: 1px solid var(--light-gray);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+}
+
+.planning-table-container {
+    overflow-x: auto;
+}
+
+.planning-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.planning-table th {
+    background: var(--secondary);
+    color: var(--white);
+    padding: 12px;
+    font-weight: 500;
+}
+
+.planning-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid var(--light-gray);
+}
+
+.planning-table td:first-child {
+    font-weight: 500;
+    background: rgba(196, 164, 132, 0.05);
+}
+
+.shift-morning {
+    background: rgba(52, 152, 219, 0.1);
+}
+
+.shift-afternoon {
+    background: rgba(46, 204, 113, 0.1);
+}
+
+.shift-night {
+    background: rgba(155, 89, 182, 0.1);
+}
+
+.shift-off {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+}
+
+.planning-legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+/* Documents */
+.documents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.document-folder h3 {
+    margin-bottom: 20px;
+    color: var(--secondary);
+}
+
+.document-folder h3 i {
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+.document-list {
+    list-style: none;
+}
+
+.document-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.document-list li:last-child {
+    border-bottom: none;
+}
+
+.document-list i {
+    color: var(--primary);
+}
+
+.document-list span {
+    flex: 1;
+    color: var(--gray);
+}
+
+.btn-download {
+    color: var(--primary);
+    transition: var(--transition);
+}
+
+.btn-download:hover {
+    transform: translateY(-2px);
+}
+
+/* Annuaire */
+.annuaire-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.contact-card {
+    background: rgba(196, 164, 132, 0.05);
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.contact-card i.fa-user-circle {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.contact-card h3 {
+    margin-bottom: 5px;
+    color: var(--secondary);
+}
+
+.contact-role {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.contact-phone,
+.contact-email {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+.contact-phone i,
+.contact-email i {
+    width: 20px;
+    color: var(--primary);
+}
+
+/* Formations */
+.formations-list {
+    margin-top: 20px;
+}
+
+.formation-item {
+    display: grid;
+    grid-template-columns: 100px 1fr 120px;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.formation-item:last-child {
+    border-bottom: none;
+}
+
+.formation-date {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.formation-details h3 {
+    margin-bottom: 5px;
+    color: var(--secondary);
+    font-size: 1.1rem;
+}
+
+.formation-details p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.formation-status {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-confirmed {
+    background: rgba(46, 204, 113, 0.2);
+    color: #27ae60;
+}
+
+.status-planned {
+    background: rgba(52, 152, 219, 0.2);
+    color: #2980b9;
+}
+
+.status-required {
+    background: rgba(231, 76, 60, 0.2);
+    color: #c0392b;
+}
+
+.formation-participants {
+    text-align: right;
+    color: var(--gray);
+}
+
+.formation-participants i {
+    margin-right: 5px;
+    color: var(--primary);
+}
+
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .login-wrapper {
+        grid-template-columns: 1fr;
+    }
     
-    <div class="personal-tabs">
-        <button class="personal-tab" onclick="showPersonalTab('protocoles')">📋 Protocoles</button>
-        <button class="personal-tab" onclick="showPersonalTab('contacts')">📞 Contacts</button>
-        <button class="personal-tab" onclick="showPersonalTab('planning')">📅 Planning</button>
-        <button class="personal-tab" onclick="showPersonalTab('documents')">📄 Documents</button>
-    </div>
+    .formation-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
     
-    <div id="protocoles" class="personal-content">
-        <h2>Protocoles internes</h2>
-        <ul>
-            <li><strong>Accueil :</strong> Sourire, contact visuel, proposition d'aide</li>
-            <li><strong>Sécurité incendie :</strong> Alerter, évacuer, confiner</li>
-            <li><strong>Hygiène :</strong> Lavage des mains régulier</li>
-            <li><strong>Check-in :</strong> Vérification identité, encaissement</li>
-            <li><strong>Check-out :</strong> Vérification chambre, facturation</li>
-            <li><strong>Service en salle :</strong> Délai max 15 minutes</li>
-        </ul>
-    </div>
+    .formation-participants {
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
     
-    <div id="contacts" class="personal-content">
-        <h2>Contacts internes</h2>
-        <table>
-            <tr>
-                <th>Service</th>
-                <th>Nom</th>
-                <th>Téléphone</th>
-            </tr>
-            <tr><td>Direction</td><td>Jean Dupont</td><td>09 72 65 22 61</td></tr>
-            <tr><td>Cuisine</td><td>Marie Martin</td><td>09 72 65 22 62</td></tr>
-            <tr><td>Réception</td><td>Pierre Durand</td><td>09 72 65 22 63</td></tr>
-            <tr><td>Maintenance</td><td>Jacques Martin</td><td>09 72 65 22 64</td></tr>
-        </table>
-    </div>
+    .protocols-grid {
+        grid-template-columns: 1fr;
+    }
     
-    <div id="planning" class="personal-content">
-        <h2>Planning de la semaine</h2>
-        <table>
-            <tr>
-                <th>Employé</th>
-                <th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th><th>Dim</th>
-            </tr>
-            <tr>
-                <td>Pierre Durand</td>
-                <td>7h-15h</td><td>7h-15h</td><td>Repos</td><td>15h-23h</td><td>15h-23h</td><td>15h-23h</td><td>7h-15h</td>
-            </tr>
-        </table>
-    </div>
+    .personnel-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
     
-    <div id="documents" class="personal-content">
-        <h2>Documents internes</h2>
-        <ul>
-            <li><a href="#">📄 Manuel de procédures 2024</a></li>
-            <li><a href="#">📄 Guide d'accueil</a></li>
-            <li><a href="#">📄 Fiches techniques plats</a></li>
-            <li><a href="#">📄 Planning des congés</a></li>
-        </ul>
-    </div>
-</div>
+    .personnel-tabs {
+        justify-content: center;
+    }
+}
+</style>
