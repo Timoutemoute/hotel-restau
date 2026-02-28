@@ -1,5 +1,5 @@
 // Configuration
-const WEBHOOK_URL = 'VOTRE_URL_WEBHOOK_DISCORD';
+const WEBHOOK_URL = 'https://discord.com/api/webhooks/1477392037820239892/5W86pVi9jdBW0V0-oAR8PfQDwFbgrakp8dTL0muiLaNmIzIDogLYcgZ72ppbtGxv-z-l';
 const VALID_USERNAME = 'admin';
 const VALID_PASSWORD = 'Bellevue2024!';
 
